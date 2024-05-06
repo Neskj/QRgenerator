@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+</head>
+<body>
+<form action="/getcode" method="post" align="center">
+    <br/><br>
+    Имя: <input type="text" name="name">
+    <br/><br>
+    Отчество: <input type="text" name="patronymic">
+    <br/><br>
+    Фамилия: <input type="text" name="surname">
+    <br/><br>
+    <button type="submit">Отправить</button>
+
+</form>
+<br>
+<br>
+<p align="center" th:text="${x}"></p>
+
+</body>
+</html>
