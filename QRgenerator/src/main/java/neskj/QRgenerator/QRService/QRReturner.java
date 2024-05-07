@@ -5,6 +5,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public interface QRReturner {
 
-    String returnQrCode(String name, String patronymic,String surname);
+    Object returnQrCode(String name, String patronymic,String surname);
 
 }

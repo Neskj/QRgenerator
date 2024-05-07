@@ -2,11 +2,14 @@ package neskj.QRgenerator.MainController;
 
 import neskj.QRgenerator.QRService.QRReturner;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.awt.image.BufferedImage;
 
 @Controller
 public class MainController {
@@ -14,7 +17,7 @@ public class MainController {
     private final QRReturner returner;
 
     @Autowired
-    MainController(QRReturner returner){
+    MainController(@Qualifier("QR") QRReturner returner){
         this.returner=returner;
     }
 
@@ -29,11 +32,13 @@ public class MainController {
     @PostMapping("/getcode")
     public String getData(@RequestParam(required = false) String name, @RequestParam(required = false) String patronymic, @RequestParam(required = false) String surname, Model page){
 
-        String message =returner.returnQrCode(name,patronymic,surname);
-        System.out.println(message);
-        page.addAttribute("message",message);
+
+        BufferedImage image=(BufferedImage) returner.returnQrCode(name,patronymic,surname);
+        System.out.println(image);
+
 
        return "MainPage.html";
 
     }
 }
+
