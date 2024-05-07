@@ -7,12 +7,9 @@ public class QRCreator implements QRReturner {
 
     public String returnQrCode(String name, String patronymic,String surname){
 
-        StringBuilder qr=new StringBuilder()
-                .append(name)
-                .append(patronymic)
-                .append(surname);
-
-        return "Тут будет qr код для строки : "+qr.toString();
+        return "Тут будет qr код для строки --->>"+" Имя : "+name+" ; Отчество : "+patronymic+ " ; Фамилия : "+surname+" .";
 
     }
+
+
 }

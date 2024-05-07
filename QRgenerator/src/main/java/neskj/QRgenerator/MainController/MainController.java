@@ -29,9 +29,9 @@ public class MainController {
     @PostMapping("/getcode")
     public String getData(@RequestParam(required = false) String name, @RequestParam(required = false) String patronymic, @RequestParam(required = false) String surname, Model page){
 
-       String text ="Example";
-        System.out.println(text);
-        page.addAttribute("x",text);
+        String message =returner.returnQrCode(name,patronymic,surname);
+        System.out.println(message);
+        page.addAttribute("message",message);
 
        return "MainPage.html";
 
