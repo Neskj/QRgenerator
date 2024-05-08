@@ -1,6 +1,8 @@
 package neskj.QRgenerator.QRService;
 
+import neskj.QRgenerator.Model.Visitor;
+
 public interface QRReturner {
 
-    Object returnQrCode(String organization,String name,String patronymic,String surname,String serial,String number,String date);
+    Object returnQrCode(Visitor visitor);
 }

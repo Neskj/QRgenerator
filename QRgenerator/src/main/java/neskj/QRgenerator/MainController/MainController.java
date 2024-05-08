@@ -1,5 +1,6 @@
 package neskj.QRgenerator.MainController;
 
+import neskj.QRgenerator.Model.Visitor;
 import neskj.QRgenerator.QRService.QRReturner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,14 +35,24 @@ public class MainController {
 
     @PostMapping("/getcode")
     public String getData(@RequestParam(required = false)String organization,
+                          @RequestParam(required = false) String surname,
                           @RequestParam(required = false) String name,
                           @RequestParam(required = false) String patronymic,
-                          @RequestParam(required = false) String surname,
                           @RequestParam(required = false) String serial,
                           @RequestParam(required = false) String number,
                           @RequestParam(required = false) String date, Model page){
 
-        BufferedImage image=(BufferedImage) returner.returnQrCode(organization,name,patronymic,surname,serial,number,date);
+        Visitor visitor=new Visitor.Builder()
+                .addOrganization(organization)
+                .addSurname(surname)
+                .addName(name)
+                .addPatronymic(patronymic)
+                .addSerial(serial)
+                .addNumber(number)
+                .addDate(date)
+                .build();
+
+        BufferedImage image=(BufferedImage) returner.returnQrCode(visitor);
 
         ByteArrayOutputStream byteStream=new ByteArrayOutputStream();
         try {

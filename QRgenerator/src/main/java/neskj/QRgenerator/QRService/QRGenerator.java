@@ -4,6 +4,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import neskj.QRgenerator.Model.Visitor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -20,10 +21,11 @@ public class QRGenerator implements QRReturner{
     BufferedImage image;
 
     @Override
-    public Object returnQrCode(String organization,String name,String patronymic,String surname,String serial,String number,String date) {
+    public Object returnQrCode(Visitor visitor) {
 
-        String text="New visitor: "+"\n"+"Organization : "+organization+"\n"+"Full name: "+surname+" "+name+" "+patronymic+"\n"+
-                "Passport: "+serial+" "+number+"\n"+"Date of visit: "+date;
+        String text="New visitor: "+"\n"+"Organization : "+visitor.getOrganization()+"\n"+"Full name: "
+                +visitor.getSurname()+" "+visitor.getName()+ " "+visitor.getPatronymic()+"\n"+
+                "Passport: "+visitor.getSerial()+" "+visitor.getNumber()+"\n"+"Date of visit: "+visitor.getDate();
         System.out.println(text);
         int width=256;
         int height=256;
