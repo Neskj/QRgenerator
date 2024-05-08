@@ -22,7 +22,7 @@ public class QRGenerator implements QRReturner{
     @Override
     public Object returnQrCode(String name, String patronymic, String surname) {
 
-        String text="New visitor: "+name+" "+patronymic+" "+surname;
+        String text="New visitor: "+surname+" "+name+" "+patronymic;
         int width=256;
         int height=256;
 

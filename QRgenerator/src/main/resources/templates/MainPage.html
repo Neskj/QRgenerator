@@ -3,15 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Main page</title>
+    <style>
+        .picture{
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        body{
+            font-family: "Verdana",sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
+<br>
+<h2>Заполните форму для получения пропуска на территорию ЦТД АО "Мосводоканал"</h2>
 <form action="/getcode" method="post" align="center">
+    <br/><br>
+    Фамилия: <input type="text" name="surname">
     <br/><br>
     Имя: <input type="text" name="name">
     <br/><br>
     Отчество: <input type="text" name="patronymic">
-    <br/><br>
-    Фамилия: <input type="text" name="surname">
     <br/><br>
     <button type="submit">Отправить</button>
 
@@ -19,7 +34,10 @@
 <br>
 <br>
 <p align="center" th:text="${message}"></p>
-<img th:src="@{'data:image/png;base64,'+${qrCode}}" />
+<div class="picture">
+    <img th:src="@{'data:image/png;base64,'+${qrCode}}" />
+</div>
+
 
 
 </body>
