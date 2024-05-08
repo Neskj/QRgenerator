@@ -52,9 +52,10 @@ public class MainController {
 
         byte[] qrInBytes =byteStream.toByteArray();
         String qrInBase64= Base64.getEncoder().encodeToString(qrInBytes);
-
         System.out.println(qrInBase64);
-
+        
+        String message= (qrInBase64!=null)? "Ваш QR код: ":"Ошибка при создании QR кода. ";
+        page.addAttribute("message",message);
         page.addAttribute("qrCode",qrInBase64);
 
 

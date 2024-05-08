@@ -25,7 +25,6 @@ public class QRGenerator implements QRReturner{
         String text="New visitor: "+"\n"+"Organization : "+organization+"\n"+"Full name: "+surname+" "+name+" "+patronymic+"\n"+
                 "Passport: "+serial+" "+number+"\n"+"Date of visit: "+date;
         System.out.println(text);
-
         int width=256;
         int height=256;
 
