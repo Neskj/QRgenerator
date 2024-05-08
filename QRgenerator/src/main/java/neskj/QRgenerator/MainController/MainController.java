@@ -10,25 +10,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Base64;
+import java.util.logging.Logger;
 
 @Controller
 public class MainController {
 
+    private final static Logger logger = Logger.getLogger(MainController.class.getName());
     private final QRReturner returner;
 
     @Autowired
-    MainController(@Qualifier("QR") QRReturner returner){
-        this.returner=returner;
+    MainController(@Qualifier("QR") QRReturner returner) {
+        this.returner = returner;
     }
 
     @GetMapping("/getcode")
-    public String sendQrCode(){
+    public String sendQrCode() {
 
         return "MainPage.html";
     }
@@ -54,23 +55,22 @@ public class MainController {
 
         BufferedImage image=(BufferedImage) returner.returnQrCode(visitor);
 
-        ByteArrayOutputStream byteStream=new ByteArrayOutputStream();
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         try {
-            ImageIO.write(image,"png", byteStream);
-        } catch (IOException e){
-            System.out.println("U have IO exception now...");
+            ImageIO.write(image, "png", byteStream);
+        } catch (IOException e) {
+            logger.info("U have IO exception now...");
         }
 
-        byte[] qrInBytes =byteStream.toByteArray();
-        String qrInBase64= Base64.getEncoder().encodeToString(qrInBytes);
-        System.out.println(qrInBase64);
-        
-        String message= (qrInBase64!=null)? "Ваш QR код: ":"Ошибка при создании QR кода. ";
-        page.addAttribute("message",message);
-        page.addAttribute("qrCode",qrInBase64);
+        byte[] qrInBytes = byteStream.toByteArray();
+        String qrInBase64 = Base64.getEncoder().encodeToString(qrInBytes);
+        logger.info("Detected new QR code : " + "\n" + "Going to Base64 -->> " + qrInBase64);
 
+        String message = (qrInBase64 != null) ? "Ваш QR код: " : "Ошибка при создании QR кода. ";
+        page.addAttribute("message", message);
+        page.addAttribute("qrCode", qrInBase64);
 
-       return "MainPage.html";
+        return "MainPage.html";
     }
 }
 

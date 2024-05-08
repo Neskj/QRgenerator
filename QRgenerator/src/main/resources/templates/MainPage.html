@@ -21,7 +21,6 @@
             background-color: #f4f4f4;
             text-align: center;
         }
-
     </style>
 </head>
 <body>
@@ -42,17 +41,6 @@
     Дата посещения: <input type="text" name="date">
     <br/><br>
     <button type="submit">Отправить</button>
-    <!--
-    Фамилия: <input type="text" name="surname">
-    <br/><br>
-    Имя: <input type="text" name="name">
-    <br/><br>
-    Отчество: <input type="text" name="patronymic">
-    <br/><br>
-    <button type="submit">Отправить</button>
-    -->
-
-
 </form>
 <br>
 <br>
@@ -60,8 +48,5 @@
 <div class="picture">
     <img th:src="@{'data:image/png;base64,'+${qrCode}}" />
 </div>
-
-
-
 </body>
 </html>

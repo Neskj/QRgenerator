@@ -13,22 +13,25 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 @Component
 @Qualifier("QR")
-public class QRGenerator implements QRReturner{
+public class QRGenerator implements QRReturner {
 
-    BufferedImage image;
+    private final static Logger logger = Logger.getLogger(QRGenerator.class.getName());
+
+    private BufferedImage image;
 
     @Override
     public Object returnQrCode(Visitor visitor) {
 
-        String text="New visitor: "+"\n"+"Organization : "+visitor.getOrganization()+"\n"+"Full name: "
-                +visitor.getSurname()+" "+visitor.getName()+ " "+visitor.getPatronymic()+"\n"+
-                "Passport: "+visitor.getSerial()+" "+visitor.getNumber()+"\n"+"Date of visit: "+visitor.getDate();
-        System.out.println(text);
-        int width=256;
-        int height=256;
+        String text = "New visitor: " + "\n" + "Organization : " + visitor.getOrganization() + "\n" + "Full name: "
+                + visitor.getSurname() + " " + visitor.getName() + " " + visitor.getPatronymic() + "\n" +
+                "Passport: " + visitor.getSerial() + " " + visitor.getNumber() + "\n" + "Date of visit: " + visitor.getDate();
+        logger.info("A line has been accepted to generate a QR code: " + "\n" + text);
+        int width = 256;
+        int height = 256;
 
         try {
             BitMatrix bitMatrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, width, height);
@@ -39,12 +42,12 @@ public class QRGenerator implements QRReturner{
                 }
             }
         }catch (WriterException e){
-            System.out.println("U has a Writer exception rhight now.");
+            logger.info("U has a Writer exception rhight now.");
         }
         try {
             ImageIO.write(image, "png", new File("qr_code.png"));
         }catch (IOException e){
-            System.out.println("Attention !!! IO Exception!!");
+            logger.info("Attention !!! IO Exception!!");
         }
 
         return image;
