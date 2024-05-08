@@ -33,11 +33,15 @@ public class MainController {
     }
 
     @PostMapping("/getcode")
-    public String getData(@RequestParam(required = false) String name,
+    public String getData(@RequestParam(required = false)String organization,
+                          @RequestParam(required = false) String name,
                           @RequestParam(required = false) String patronymic,
-                          @RequestParam(required = false) String surname, Model page){
+                          @RequestParam(required = false) String surname,
+                          @RequestParam(required = false) String serial,
+                          @RequestParam(required = false) String number,
+                          @RequestParam(required = false) String date, Model page){
 
-        BufferedImage image=(BufferedImage) returner.returnQrCode(name,patronymic,surname);
+        BufferedImage image=(BufferedImage) returner.returnQrCode(organization,name,patronymic,surname,serial,number,date);
 
         ByteArrayOutputStream byteStream=new ByteArrayOutputStream();
         try {

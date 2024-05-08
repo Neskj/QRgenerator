@@ -33,8 +33,15 @@
 <h4>Заполните форму для получения пропуска на территорию ЦТД АО "Мосводоканал"</h4>
 <form action="/getcode" method="post" align="center">
     <br/><br>
-    Наименование организации:
-
+    Наименование организации: <input type="text" name="organization">
+    <br/><br>
+    Фамилия: <input type="text" name="surname"> Имя: <input type="text" name="name"> Отчество: <input type="text" name="patronymic">
+    <br/><br>
+    Паспорт: серия <input type="text" name="serial"> № <input type="text" name="number">
+    <br/><br>
+    Дата посещения: <input type="text" name="date">
+    <br/><br>
+    <button type="submit">Отправить</button>
     <!--
     Фамилия: <input type="text" name="surname">
     <br/><br>

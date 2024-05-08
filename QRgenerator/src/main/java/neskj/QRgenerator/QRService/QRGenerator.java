@@ -20,9 +20,12 @@ public class QRGenerator implements QRReturner{
     BufferedImage image;
 
     @Override
-    public Object returnQrCode(String name, String patronymic, String surname) {
+    public Object returnQrCode(String organization,String name,String patronymic,String surname,String serial,String number,String date) {
 
-        String text="New visitor: "+surname+" "+name+" "+patronymic;
+        String text="New visitor: "+"\n"+"Organization : "+organization+"\n"+"Full name: "+surname+" "+name+" "+patronymic+"\n"+
+                "Passport: "+serial+" "+number+"\n"+"Date of visit: "+date;
+        System.out.println(text);
+
         int width=256;
         int height=256;
 
