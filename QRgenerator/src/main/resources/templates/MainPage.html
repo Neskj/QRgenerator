@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <title>Main page</title>
     <style>
+        .blue-bar{
+            background-color: #0069A9;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
         .picture{
             display: flex;
             justify-content: center;
@@ -19,9 +26,16 @@
 </head>
 <body>
 <br>
-<h2>Заполните форму для получения пропуска на территорию ЦТД АО "Мосводоканал"</h2>
+<div class="blue-bar">
+    <h2>ЦЕНТР ТЕХНИЧЕСКОЙ ДИАГНОСТИКИ АО "МОСВОДОКАНАЛ"</h2>
+</div>
+<br>
+<h4>Заполните форму для получения пропуска на территорию ЦТД АО "Мосводоканал"</h4>
 <form action="/getcode" method="post" align="center">
     <br/><br>
+    Наименование организации:
+
+    <!--
     Фамилия: <input type="text" name="surname">
     <br/><br>
     Имя: <input type="text" name="name">
@@ -29,6 +43,8 @@
     Отчество: <input type="text" name="patronymic">
     <br/><br>
     <button type="submit">Отправить</button>
+    -->
+
 
 </form>
 <br>
