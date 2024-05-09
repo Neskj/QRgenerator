@@ -4,6 +4,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import neskj.QRgenerator.Model.Qr;
 import neskj.QRgenerator.Model.Visitor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -26,9 +27,9 @@ public class QRGenerator implements QRReturner {
     @Override
     public Object returnQrCode(Visitor visitor) {
 
-        String inputText = "New visitor: " + "\n" + "Organization : " + visitor.getOrganization() + "\n" + "Full name: "
+        String inputText = Qr.VISITOR.getText() + "\n" + Qr.ORGANIZATION.getText() + visitor.getOrganization() + "\n" + Qr.FULLNAME.getText()
                 + visitor.getSurname() + " " + visitor.getName() + " " + visitor.getPatronymic() + "\n" +
-                "Passport: " + visitor.getSerial() + " " + visitor.getNumber() + "\n" + "Date of visit: " + visitor.getDate();
+                Qr.PASPORT.getText() + visitor.getSerial() + " " + visitor.getNumber() + "\n" + Qr.DATE.getText() + visitor.getDate();
         logger.info("A line has been accepted to generate a QR code: " + "\n" + inputText);
 
         byte[] encodeBytes = inputText.getBytes(StandardCharsets.UTF_8);
