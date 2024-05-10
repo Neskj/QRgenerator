@@ -66,9 +66,7 @@ public class Visitor {
         return surname;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     public String getPatronymic() {
         return patronymic;
