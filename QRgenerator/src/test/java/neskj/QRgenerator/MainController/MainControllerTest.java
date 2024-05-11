@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.awt.image.BufferedImage;
 import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,16 +21,11 @@ import static org.mockito.Mockito.when;
 public class MainControllerTest {
 
     @Mock
-    private Visitor visitor;
-
-    @Mock
     private Model page;
 
     @Mock
     private QRReturner returner;
 
-    @Mock
-    private Logger logger;
 
     @InjectMocks
     private MainController mainController;
@@ -40,6 +36,7 @@ public class MainControllerTest {
         assertEquals("MainPage.html",mainController.sendQrCode());
     }
 
+    /* пока не вижу варианта как проверить принимаемый base64 и при этом не писать стрингу на 8000+ символов в тесте
     @Test
     public void getDataHappyFlow(){
 
@@ -51,7 +48,7 @@ public class MainControllerTest {
         String number="347284";
         String date="20.08.2026";
 
-        visitor = new Visitor.Builder()
+        Visitor visitor = new Visitor.Builder()
                 .addOrganization("Diksy")
                 .addSurname("Petrova")
                 .addName("Galina")
@@ -61,18 +58,13 @@ public class MainControllerTest {
                 .addDate("20.08.2026")
                 .build();
 
-        
+        BufferedImage testImage =new BufferedImage(256,256,BufferedImage.TYPE_INT_RGB);
+        when(returner.returnQrCode(visitor)).thenReturn(testImage);
 
+        String execute=mainController.getData(organization,surname,name,patronymic,serial,number,date,page);
+        assertEquals("MainPage.html",execute);
 
-
-        when(returner.returnQrCode(visitor)).thenReturn()
-
-        mainController.getData(organization,surname,name,patronymic,serial,number,date,page);
-
-
-
-
+        verify(returner).returnQrCode(visitor);
     }
-
-
+*/
 }
